@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stefanini Marketing — Cold Outreach Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0d0f2b;
+    --navy-mid: #1a1d3a;
+    --navy-light: #252850;
+    --pink: #e91e63;
+    --pink-light: #f06292;
+    --pink-glow: rgba(233,30,99,0.15);
+    --white: #ffffff;
+    --gray: #8b8fa8;
+    --gray-light: #c5c7d4;
+    --border: rgba(255,255,255,0.08);
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--white); min-height: 100vh; }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, #1a0a2e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo-area { display: flex; align-items: center; gap: 16px; }
+  .logo-icon { width: 36px; height: 36px; background: var(--pink); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; }
+  .logo-text { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+  .logo-text span { color: var(--pink); }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .header-tag { background: var(--pink-glow); border: 1px solid rgba(233,30,99,0.3); color: var(--pink-light); font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; }
+  .deck-btn { background: var(--pink); color: white; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 8px; text-decoration: none; letter-spacing: 0.3px; transition: opacity 0.2s; }
+  .deck-btn:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero { padding: 48px 48px 36px; max-width: 1100px; margin: 0 auto; }
+  .hero-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); margin-bottom: 14px; }
+  .hero h1 { font-size: 36px; font-weight: 800; line-height: 1.15; letter-spacing: -1px; margin-bottom: 14px; }
+  .hero h1 em { font-style: normal; color: var(--pink); }
+  .hero p { font-size: 14px; color: var(--gray-light); line-height: 1.7; max-width: 560px; margin-bottom: 24px; }
+  .rule { font-size: 13px; color: var(--gray); background: var(--navy-light); border-left: 3px solid var(--pink); padding: 12px 16px; border-radius: 0 8px 8px 0; max-width: 560px; line-height: 1.6; }
+
+  /* TABS */
+  .tabs-wrapper { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); overflow-x: auto; }
+  .tab { padding: 12px 18px; font-size: 13px; font-weight: 600; color: var(--gray); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; letter-spacing: 0.2px; }
+  .tab:hover { color: var(--white); }
+  .tab.active { color: var(--pink); border-bottom-color: var(--pink); }
+
+  /* CONTENT */
+  .content { max-width: 1100px; margin: 0 auto; padding: 36px 48px 80px; }
+  .profile { display: none; }
+  .profile.active { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* CARDS */
+  .card { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+  .card.full { grid-column: 1 / -1; }
+  .card.accent { border-color: rgba(233,30,99,0.3); background: linear-gradient(135deg, var(--navy-mid), #1a0a1f); }
+  .card-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); margin-bottom: 10px; }
+  .card h2 { font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; line-height: 1.3; }
+  .card p { font-size: 13px; color: var(--gray-light); line-height: 1.7; }
+
+  /* WHAT WE DO BOX */
+  .what-we-do { grid-column: 1 / -1; background: rgba(233,30,99,0.08); border: 1px solid rgba(233,30,99,0.25); border-radius: 16px; padding: 24px; }
+  .what-we-do .card-label { margin-bottom: 12px; }
+  .what-we-do p { font-size: 15px; font-weight: 500; color: var(--white); line-height: 1.7; font-style: italic; }
+  .copy-btn { margin-top: 14px; background: transparent; border: 1px solid rgba(233,30,99,0.4); color: var(--pink-light); font-size: 11px; font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer; letter-spacing: 0.5px; transition: all 0.2s; }
+  .copy-btn:hover { background: var(--pink-glow); }
+
+  /* PAIN POINTS */
+  .pains { list-style: none; margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .pains li { font-size: 13px; color: var(--gray-light); padding-left: 18px; position: relative; line-height: 1.6; }
+  .pains li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--pink); }
+
+  /* OFFER PILLS */
+  .offer-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .pill { font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px; background: var(--pink-glow); border: 1px solid rgba(233,30,99,0.25); color: var(--pink-light); }
+
+  /* EMAIL */
+  .email-box { background: #0a0c1e; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 14px; }
+  .email-header { background: var(--navy-light); padding: 10px 18px; display: flex; gap: 24px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .email-field { font-size: 12px; color: var(--gray); }
+  .email-field strong { color: var(--gray-light); margin-right: 6px; }
+  .email-body { padding: 18px; font-size: 13px; line-height: 1.85; color: var(--gray-light); white-space: pre-wrap; }
+  .email-body .highlight { color: var(--white); font-weight: 600; }
+  .email-body .placeholder { color: var(--pink-light); font-style: italic; }
+
+  /* CASES */
+  .cases { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+  .case-item { display: flex; gap: 12px; align-items: flex-start; padding: 14px; background: var(--navy-light); border-radius: 10px; border: 1px solid var(--border); }
+  .case-badge { min-width: 38px; height: 38px; background: var(--pink-glow); border: 1px solid rgba(233,30,99,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .case-content h4 { font-size: 13px; font-weight: 700; margin-bottom: 3px; color: var(--white); }
+  .case-content p { font-size: 12px; color: var(--gray); line-height: 1.6; }
+  .case-metric { margin-top: 5px; font-size: 11px; font-weight: 700; color: var(--pink-light); }
+  .case-link { display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 600; color: var(--pink); text-decoration: none; border-bottom: 1px solid rgba(233,30,99,0.3); padding-bottom: 1px; }
+  .case-link:hover { border-bottom-color: var(--pink); }
+
+  /* SALESFORCE PROFILE */
+  .sf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .sf-full { grid-column: 1 / -1; }
+
+  /* CASE MAP */
+  .map-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
+  .map-table th { text-align: left; padding: 10px 14px; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); border-bottom: 1px solid var(--border); }
+  .map-table td { padding: 12px 14px; color: var(--gray-light); border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  .map-table tr:last-child td { border-bottom: none; }
+  .map-table tr:hover td { background: var(--navy-light); }
+  .map-table td:first-child { color: var(--white); font-weight: 600; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: var(--gray-light); margin: 2px; }
+
+  .footer { text-align: center; padding: 24px; font-size: 11px; color: var(--gray); border-top: 1px solid var(--border); letter-spacing: 0.5px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .header { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    .header-right { flex-wrap: wrap; gap: 8px; width: 100%; }
+    .header-tag { display: none; }
+    .deck-btn { font-size: 12px; padding: 10px 16px; width: 100%; text-align: center; border-radius: 10px; }
+    .hero { padding: 28px 20px 24px; }
+    .hero h1 { font-size: 26px; letter-spacing: -0.5px; }
+    .hero p { font-size: 13px; }
+    .rule { font-size: 12px; }
+    .tabs-wrapper { padding: 0 20px; }
+    .tabs { gap: 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab { padding: 12px 14px; font-size: 12px; }
+    .content { padding: 20px 20px 60px; }
+    .profile.active { grid-template-columns: 1fr; gap: 16px; }
+    .card { padding: 18px; border-radius: 12px; }
+    .card.full { grid-column: 1; }
+    .card h2 { font-size: 16px; }
+    .card p { font-size: 13px; }
+    .what-we-do { grid-column: 1; padding: 18px; }
+    .what-we-do p { font-size: 14px; }
+    .copy-btn { width: 100%; padding: 12px; font-size: 13px; margin-top: 16px; border-radius: 10px; }
+    .pains li { font-size: 13px; }
+    .email-header { flex-direction: column; gap: 6px; padding: 12px 16px; }
+    .email-body { font-size: 13px; padding: 16px; line-height: 1.8; }
+    .case-item { padding: 12px; }
+    .case-content h4 { font-size: 13px; }
+    .case-content p { font-size: 12px; }
+    .map-table { font-size: 12px; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .map-table th { font-size: 10px; padding: 8px 10px; white-space: nowrap; }
+    .map-table td { padding: 10px; white-space: nowrap; }
+    .sf-grid { grid-template-columns: 1fr; }
+    .sf-full { grid-column: 1; }
+    .offer-pills { gap: 6px; }
+    .pill { font-size: 11px; padding: 4px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo-area">
+    <div class="logo-icon">S</div>
+    <div class="logo-text">Stefanini <span>Marketing</span></div>
+  </div>
+  <div class="header-right">
+    <div class="header-tag">Cold Outreach Guide · BDR/BUL Enablement</div>
+    <a class="deck-btn" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQB-lCmeSfYWTJ6L7WJHwbAHAXG_T6uxsfpWe2yC6qHw2Ug?e=qyVqrQ" target="_blank">Access Marketing Short Deck</a>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-label">How to use this guide</div>
+  <h1>The right message,<br>to the <em>right person.</em></h1>
+  <p>Each section maps a buyer profile to their specific pain points, what we offer, and a proven email template. Always research the company before sending.</p>
+  <div class="rule">The more specific your opening line, the higher the response rate. Never send without personalizing [Company] and [Name].</div>
+</div>
+
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab active" onclick="showProfile('cmo', this)">CMO</button>
+    <button class="tab" onclick="showProfile('crm', this)">Head of CRM</button>
+    <button class="tab" onclick="showProfile('martech', this)">Head of MarTech</button>
+    <button class="tab" onclick="showProfile('digital', this)">Head of Digital</button>
+    <button class="tab" onclick="showProfile('cdo', this)">CDO / Head of Data</button>
+    <button class="tab" onclick="showProfile('salesforce', this)">Salesforce Lead</button>
+    <button class="tab" onclick="showProfile('map', this)">Case Map</button>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- CMO -->
+  <div class="profile active" id="profile-cmo">
+    <div class="card accent full">
+      <div class="card-label">Profile 01</div>
+      <h2>CMO / VP of Marketing</h2>
+      <p>Owns brand, growth, consumer engagement, and marketing budget. Accountable for revenue contribution. In D2C companies, responsible for the direct relationship with the end consumer across every touchpoint.</p>
+      <div class="offer-pills">
+        <span class="pill">Growth Engine</span>
+        <span class="pill">Consumer Intelligence</span>
+        <span class="pill">Brand Strategy</span>
+        <span class="pill">Full-Funnel Performance</span>
+        <span class="pill">CRM</span>
+        <span class="pill">MarTech</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Pain Points</div>
+      <h2>What keeps them up at night</h2>
+      <ul class="pains">
+        <li>Marketing efforts are fragmented across agencies, tools, and teams with no unified strategy</li>
+        <li>Data exists but does not translate into growth decisions</li>
+        <li>Brand and performance are treated as separate worlds</li>
+        <li>Hard to scale personalization without scaling cost</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Cases</div>
+      <h2>Proof points to reference</h2>
+      <div class="cases">
+        <div class="case-item">
+          <div class="case-badge">🌸</div>
+          <div class="case-content">
+            <h4>Boticário</h4>
+            <p>Drove record digital contribution to in-store sales without increasing discount pressure, using smarter audience targeting and social-native formats.</p>
+            <div class="case-metric">40% digital share of in-person purchase journey</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQDbi8Lgm6M7QZAeKVLX9uFTAaljs87eI7BJM4mYaH1oJZo?e=ulldkQ" target="_blank">View full case</a>
+          </div>
+        </div>
+        <div class="case-item">
+          <div class="case-badge">🎨</div>
+          <div class="case-content">
+            <h4>Suvinil / Sherwin Williams</h4>
+            <p>Reactivated a 90% dormant base in under a month, turning CRM into a primary revenue channel.</p>
+            <div class="case-metric">5.1x ROI · CRM drove 17% of period revenue</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQCMZjHkEQeeRLEMIJ5v0W6EAREh6mtJKzMJP208vg6rhK4?e=rvQ54K" target="_blank">View full case</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="what-we-do">
+      <div class="card-label">What we do — copy and paste</div>
+      <p id="cmo-pitch">"We help brands understand their consumers, design relevant experiences, build culturally connected campaigns, and grow through data. All connected in one end-to-end marketing operation."</p>
+      <button class="copy-btn" onclick="copyText('cmo-pitch', this)">Copy to clipboard</button>
+    </div>
+
+    <div class="card full accent">
+      <div class="card-label">Email Template</div>
+      <h2>Cold outreach</h2>
+      <div class="email-box">
+        <div class="email-header">
+          <div class="email-field"><strong>To:</strong> <span class="placeholder">[CMO Name]</span></div>
+          <div class="email-field"><strong>Subject:</strong> [Company] — turning marketing complexity into growth</div>
+        </div>
+        <div class="email-body">Hi <span class="placeholder">[Name]</span>,
+
+Most CMOs we talk to are dealing with the same tension: more channels, more data, more tools, but not necessarily more growth.
+
+We help marketing leaders <span class="highlight">connect consumer intelligence, creative execution, CRM, and analytics into one integrated operation</span>, so every investment compounds instead of competing.
+
+We have done it for leading brands across retail, beauty, and financial services. I would love to share what we found when we looked at <span class="placeholder">[Company]</span>'s current setup.
+
+Would a 20-minute call make sense this week?
+
+Best,
+<span class="placeholder">[Your name]</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRM -->
+  <div class="profile" id="profile-crm">
+    <div class="card accent full">
+      <div class="card-label">Profile 02</div>
+      <h2>Head of CRM / Retention / Loyalty</h2>
+      <p>Owns the customer lifecycle from acquisition through retention, loyalty, and reactivation. Measured on LTV, churn, repeat purchase rate, and engagement. Manages complex CRM stacks and large customer bases that are often underactivated.</p>
+      <div class="offer-pills">
+        <span class="pill">CRM Maturity Model</span>
+        <span class="pill">AI for CRM Content</span>
+        <span class="pill">Lifecycle Programs</span>
+        <span class="pill">Salesforce Marketing Cloud</span>
+        <span class="pill">Creative Automation</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Pain Points</div>
+      <h2>What keeps them up at night</h2>
+      <ul class="pains">
+        <li>Personalizing at scale is expensive and slow — every new segment means more production cost</li>
+        <li>The existing customer base is larger than the results suggest</li>
+        <li>CRM is treated as a campaign cost center, not a revenue channel</li>
+        <li>Creative production is a bottleneck that limits how granular outreach can get</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Cases</div>
+      <h2>Proof points to reference</h2>
+      <div class="cases">
+        <div class="case-item">
+          <div class="case-badge">🏠</div>
+          <div class="case-content">
+            <h4>Suvinil / Sherwin Williams</h4>
+            <p>Reactivated a dormant base with a 4-stage demand journey on Salesforce, driving 392% more store visits than paid media.</p>
+            <div class="case-metric">5.1x ROI · +7.5% incremental revenue</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQCMZjHkEQeeRLEMIJ5v0W6EAREh6mtJKzMJP208vg6rhK4?e=rvQ54K" target="_blank">View full case</a>
+          </div>
+        </div>
+        <div class="case-item">
+          <div class="case-badge">💳</div>
+          <div class="case-content">
+            <h4>Getnet / Santander</h4>
+            <p>AI and LLMs generating personalized content per segment automatically, turning a production constraint into a personalization lever.</p>
+            <div class="case-metric">2x engagement · 3x content efficiency · 30% time savings</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQBApH1r52rASaS6djcf03KyAQpROzQi60gStzViHbpV0Sw?e=anRE1Z" target="_blank">View full case</a>
+          </div>
+        </div>
+        <div class="case-item">
+          <div class="case-badge">🚗</div>
+          <div class="case-content">
+            <h4>Movida</h4>
+            <p>Behavioral targeting and AI-driven offer logic orchestrated end-to-end on Salesforce Marketing Cloud.</p>
+            <div class="case-metric">+68% conversion rate · -42% cost per conversion</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQDy3tNj4hyQTbNx8GxD-j3HAbVOFpHIAzD9U91mgdQODpk?e=Yhpa1k" target="_blank">View full case</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="what-we-do">
+      <div class="card-label">What we do — copy and paste</div>
+      <p id="crm-pitch">"We help CRM teams move from batch campaigns to always-on lifecycle programs, using AI to generate personalized content at scale and turn the existing customer base into a recurring revenue channel."</p>
+      <button class="copy-btn" onclick="copyText('crm-pitch', this)">Copy to clipboard</button>
+    </div>
+
+    <div class="card full accent">
+      <div class="card-label">Email Template</div>
+      <h2>Cold outreach</h2>
+      <div class="email-box">
+        <div class="email-header">
+          <div class="email-field"><strong>To:</strong> <span class="placeholder">[CRM Lead Name]</span></div>
+          <div class="email-field"><strong>Subject:</strong> Your CRM base is bigger than your results suggest</div>
+        </div>
+        <div class="email-body">Hi <span class="placeholder">[Name]</span>,
+
+Most CRM teams we work with are personalizing for a fraction of their base and batch-sending to the rest. Not because of strategy, but because <span class="highlight">production cost caps how granular outreach can realistically get.</span>
+
+We solved that for a leading retailer with over 3,000 points of sale, tripling communications output with the same team using AI-generated content per audience segment.
+
+I would love to show you how we approached it. Would a quick call work this week?
+
+Best,
+<span class="placeholder">[Your name]</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARTECH -->
+  <div class="profile" id="profile-martech">
+    <div class="card accent full">
+      <div class="card-label">Profile 03</div>
+      <h2>Head of MarTech / Marketing Operations</h2>
+      <p>Owns the marketing technology stack, implementation, integration, data layer, tag management, and tool governance. The bridge between marketing and IT. Knows where the data breaks and where the team is wasting hours on manual operational work.</p>
+      <div class="offer-pills">
+        <span class="pill">Data Layer Optimization</span>
+        <span class="pill">AI Tagging Automation</span>
+        <span class="pill">Salesforce Implementation</span>
+        <span class="pill">Adobe Services</span>
+        <span class="pill">Data Quality Monitoring</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Pain Points</div>
+      <h2>What keeps them up at night</h2>
+      <ul class="pains">
+        <li>Low confidence in data quality limits strategic decision-making</li>
+        <li>Tagging issues create blind spots in the conversion journey</li>
+        <li>Too much time spent fixing data instead of generating insights</li>
+        <li>MarTech stack is fragmented, expensive, and underutilized</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Cases</div>
+      <h2>Proof points to reference</h2>
+      <div class="cases">
+        <div class="case-item">
+          <div class="case-badge">📡</div>
+          <div class="case-content">
+            <h4>Vivo / Telefonica</h4>
+            <p>AI agents automating data management across web and app, event instrumentation, error reduction, automated consistency checks, and proactive alerts.</p>
+            <div class="case-metric">+75% operational efficiency · +80% faster data availability · -90% issue resolution time</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQCjtYtCTkNTQrF-hD1AfKPLAe2Ve-VMNJjXIgXdj9aeTq0?e=MQtfhm" target="_blank">View full case</a>
+          </div>
+        </div>
+        <div class="case-item">
+          <div class="case-badge">🌐</div>
+          <div class="case-content">
+            <h4>Wizard / Pearson</h4>
+            <p>Rebuilt digital architecture with semantic HTML, SEO-compliant structure, and scalable multisite AWS infrastructure.</p>
+            <div class="case-metric">+41% overall conversion rate</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQC0txsgdiF_RJZn6hIt0LgSAYBsVUbVHYNOOuSuHC4edv4?e=vxxQZI" target="_blank">View full case</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="what-we-do">
+      <div class="card-label">What we do — copy and paste</div>
+      <p id="martech-pitch">"We implement, integrate, and automate marketing technology stacks, from data layer and tagging to platform configuration, so marketing teams spend less time fixing data and more time acting on it."</p>
+      <button class="copy-btn" onclick="copyText('martech-pitch', this)">Copy to clipboard</button>
+    </div>
+
+    <div class="card full accent">
+      <div class="card-label">Email Template</div>
+      <h2>Cold outreach</h2>
+      <div class="email-box">
+        <div class="email-header">
+          <div class="email-field"><strong>To:</strong> <span class="placeholder">[MarTech Lead Name]</span></div>
+          <div class="email-field"><strong>Subject:</strong> If your team is still fixing data instead of using it, we should talk</div>
+        </div>
+        <div class="email-body">Hi <span class="placeholder">[Name]</span>,
+
+Data quality issues in marketing stacks are rarely a people problem. They are an architecture problem. And they are expensive: <span class="highlight">every hour spent fixing tags or waiting on data is an hour not spent on insights or optimization.</span>
+
+We helped one of the largest telecoms in Latin America, with over 100 million subscribers, reduce issue resolution time by 90% and cut data availability time by 80% using AI agents across their entire web and app ecosystem.
+
+I would love to share how we did it. Would 20 minutes this week work?
+
+Best,
+<span class="placeholder">[Your name]</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIGITAL -->
+  <div class="profile" id="profile-digital">
+    <div class="card accent full">
+      <div class="card-label">Profile 04</div>
+      <h2>Head of Digital / E-commerce</h2>
+      <p>Owns the digital storefront, conversion funnel, and channel performance. Obsessed with conversion rate, customer acquisition cost, and quality of digital experience across web, app, and marketplace. Always pushing for faster experimentation and better attribution.</p>
+      <div class="offer-pills">
+        <span class="pill">Experience Design</span>
+        <span class="pill">UX Research</span>
+        <span class="pill">Commerce Architecture</span>
+        <span class="pill">Full-Funnel Performance</span>
+        <span class="pill">Channel Optimization</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Pain Points</div>
+      <h2>What keeps them up at night</h2>
+      <ul class="pains">
+        <li>Conversion problems are misdiagnosed as traffic problems</li>
+        <li>Digital experience is inconsistent across channels and devices</li>
+        <li>Hard to prioritize fixes without clear data on financial impact</li>
+        <li>Performance campaigns are driving traffic that does not convert</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Cases</div>
+      <h2>Proof points to reference</h2>
+      <div class="cases">
+        <div class="case-item">
+          <div class="case-badge">🎓</div>
+          <div class="case-content">
+            <h4>Wizard / Pearson</h4>
+            <p>UX research, accessibility improvements, SEO architecture, and scalable AWS infrastructure drove conversion across every channel.</p>
+            <div class="case-metric">+41% overall · +22% organic · +4% direct · +22% referral</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQC0txsgdiF_RJZn6hIt0LgSAYBsVUbVHYNOOuSuHC4edv4?e=vxxQZI" target="_blank">View full case</a>
+          </div>
+        </div>
+        <div class="case-item">
+          <div class="case-badge">🌸</div>
+          <div class="case-content">
+            <h4>Boticário</h4>
+            <p>Proved that digital influences in-store sales using social-native formats and smarter audience targeting.</p>
+            <div class="case-metric">40% digital share of in-person purchase journey</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQDbi8Lgm6M7QZAeKVLX9uFTAaljs87eI7BJM4mYaH1oJZo?e=ulldkQ" target="_blank">View full case</a>
+          </div>
+        </div>
+        <div class="case-item">
+          <div class="case-badge">🚗</div>
+          <div class="case-content">
+            <h4>Movida</h4>
+            <p>Conversion-optimized journeys per audience segment, calibrated to actual booking behavior.</p>
+            <div class="case-metric">+68% conversion rate · -42% cost per conversion</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQDy3tNj4hyQTbNx8GxD-j3HAbVOFpHIAzD9U91mgdQODpk?e=Yhpa1k" target="_blank">View full case</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="what-we-do">
+      <div class="card-label">What we do — copy and paste</div>
+      <p id="digital-pitch">"We design and optimize digital experiences and conversion journeys, combining UX research, channel strategy, and performance marketing to turn traffic into revenue."</p>
+      <button class="copy-btn" onclick="copyText('digital-pitch', this)">Copy to clipboard</button>
+    </div>
+
+    <div class="card full accent">
+      <div class="card-label">Email Template</div>
+      <h2>Cold outreach</h2>
+      <div class="email-box">
+        <div class="email-header">
+          <div class="email-field"><strong>To:</strong> <span class="placeholder">[Digital Lead Name]</span></div>
+          <div class="email-field"><strong>Subject:</strong> [Company] — where is the conversion actually breaking?</div>
+        </div>
+        <div class="email-body">Hi <span class="placeholder">[Name]</span>,
+
+Most digital teams we talk to are investing heavily in traffic while <span class="highlight">the real problem is in the journey.</span> Visitors arrive and leave without converting, not because of the product, but because of friction in the experience.
+
+We helped a global education company with operations in over 50 countries drive a 41% overall conversion rate increase across organic, direct, and referral traffic.
+
+I would love to do a quick diagnostic on <span class="placeholder">[Company]</span>'s funnel and share what we find. Worth a conversation?
+
+Best,
+<span class="placeholder">[Your name]</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CDO -->
+  <div class="profile" id="profile-cdo">
+    <div class="card accent full">
+      <div class="card-label">Profile 05</div>
+      <h2>CDO / Head of Data and Analytics</h2>
+      <p>Responsible for data infrastructure, analytics governance, and turning data into business decisions. Knows that marketing attribution is broken, that the data team spends more time cleaning than analyzing, and that leadership is making decisions on incomplete information.</p>
+      <div class="offer-pills">
+        <span class="pill">Marketing Analytics</span>
+        <span class="pill">Data Layer Architecture</span>
+        <span class="pill">AI-Driven Monitoring</span>
+        <span class="pill">Automated Insights</span>
+        <span class="pill">Attribution Modeling</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Pain Points</div>
+      <h2>What keeps them up at night</h2>
+      <ul class="pains">
+        <li>Marketing data is unreliable and teams do not trust it to make decisions</li>
+        <li>Attribution is fragmented across web, app, and offline channels</li>
+        <li>Analysts spend most of their time on data preparation, not analysis</li>
+        <li>AI initiatives are blocked by a poor data foundation</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Cases</div>
+      <h2>Proof points to reference</h2>
+      <div class="cases">
+        <div class="case-item">
+          <div class="case-badge">📡</div>
+          <div class="case-content">
+            <h4>Vivo / Telefonica</h4>
+            <p>Rebuilt the data foundation with AI-driven monitoring, automated quality checks, and proactive alerts across the full digital ecosystem.</p>
+            <div class="case-metric">+75% efficiency · +80% faster data · -90% issue resolution time</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQCjtYtCTkNTQrF-hD1AfKPLAe2Ve-VMNJjXIgXdj9aeTq0?e=MQtfhm" target="_blank">View full case</a>
+          </div>
+        </div>
+        <div class="case-item">
+          <div class="case-badge">🤖</div>
+          <div class="case-content">
+            <h4>US Supply Chain Company ($50B)</h4>
+            <p>Einstein AI analyzing 8,000+ sales interactions to generate automated, real-time insights for leadership.</p>
+            <div class="case-metric">Real-time seller performance visibility · Strategic recommendations automated</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQClpWwIVxT7TbDGR86kSpbMAVBDx2Pxyxf0tGN6ZDLuMp8?e=Z9KWGw" target="_blank">View full case</a>
+          </div>
+        </div>
+        <div class="case-item">
+          <div class="case-badge">🌽</div>
+          <div class="case-content">
+            <h4>Mosaic</h4>
+            <p>Integrated Salesforce and SAP across North and South America, giving sales teams full pipeline visibility.</p>
+            <div class="case-metric">Up to $1M in technology cost savings over 3 years</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQBbaFVKZrGcQLcUeRiefr1RAXyReJUPHC5SsJluQs26ULA?e=gbBYda" target="_blank">View full case</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="what-we-do">
+      <div class="card-label">What we do — copy and paste</div>
+      <p id="cdo-pitch">"We build reliable marketing data foundations, automating data quality, integrating analytics across channels, and applying AI to turn raw data into actionable business intelligence."</p>
+      <button class="copy-btn" onclick="copyText('cdo-pitch', this)">Copy to clipboard</button>
+    </div>
+
+    <div class="card full accent">
+      <div class="card-label">Email Template</div>
+      <h2>Cold outreach</h2>
+      <div class="email-box">
+        <div class="email-header">
+          <div class="email-field"><strong>To:</strong> <span class="placeholder">[CDO Name]</span></div>
+          <div class="email-field"><strong>Subject:</strong> When was the last time your marketing team fully trusted their data?</div>
+        </div>
+        <div class="email-body">Hi <span class="placeholder">[Name]</span>,
+
+For most data leaders we talk to, the honest answer is: not recently. And the cost of that mistrust is real. <span class="highlight">Slower decisions, wasted budget, and AI initiatives that cannot get off the ground because the data foundation is not solid.</span>
+
+We rebuilt that foundation for one of the largest telecoms in Latin America, automating data quality monitoring, fixing fragmented journey data across web and app, and cutting data availability time by 80%.
+
+I would love to share how we approached it and what it could look like at <span class="placeholder">[Company]</span>. Would a 20-minute call work?
+
+Best,
+<span class="placeholder">[Your name]</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SALESFORCE -->
+  <div class="profile" id="profile-salesforce">
+    <div class="card accent full">
+      <div class="card-label">Salesforce Lead</div>
+      <h2>Two entry points, one platform</h2>
+      <p>Salesforce is present across CRM, commercial operations, and data integration. Below are the two profiles most receptive to a cold outreach focused on Salesforce capabilities.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Profile A</div>
+      <h2>Head of CRM / Marketing Ops</h2>
+      <p>Uses or is evaluating Salesforce Marketing Cloud for lifecycle management, campaign automation, and personalization. Often has the platform but not the expertise or operational model to extract its full value.</p>
+      <ul class="pains" style="margin-top:14px">
+        <li>SFMC implemented but underutilized, with no active journeys or real segmentation</li>
+        <li>Team lacks technical expertise to run the platform effectively</li>
+        <li>Campaigns still operated manually, without trigger automation or dynamic content</li>
+        <li>High license cost with ROI hard to justify to the board</li>
+      </ul>
+      <div class="offer-pills" style="margin-top:14px">
+        <span class="pill">SFMC Implementation</span>
+        <span class="pill">Journey Builder</span>
+        <span class="pill">AI Content Automation</span>
+        <span class="pill">Audience Segmentation</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Profile B</div>
+      <h2>Head of Sales Ops / RevOps</h2>
+      <p>Manages the commercial pipeline and wants to use Salesforce Sales Cloud and Einstein to improve sales team performance and decision-making. Focused on pipeline visibility, productivity, and reducing manual work.</p>
+      <ul class="pains" style="margin-top:14px">
+        <li>Sales Cloud implemented but with low adoption by the commercial team</li>
+        <li>Sales leadership making decisions without reliable pipeline visibility</li>
+        <li>Interaction data exists but does not generate actionable insights</li>
+        <li>Complex CPQ and redundant processes slow down the sales cycle</li>
+      </ul>
+      <div class="offer-pills" style="margin-top:14px">
+        <span class="pill">Sales Cloud Optimization</span>
+        <span class="pill">Einstein AI</span>
+        <span class="pill">CPQ Simplification</span>
+        <span class="pill">Pipeline Analytics</span>
+      </div>
+    </div>
+
+    <div class="what-we-do">
+      <div class="card-label">What we do — copy and paste</div>
+      <p id="sf-pitch">"We implement, configure, and operate Salesforce end-to-end, from Marketing Cloud lifecycle automation to Sales Cloud and Einstein AI, so companies get full value from their Salesforce investment without depending on a technical team to run it."</p>
+      <button class="copy-btn" onclick="copyText('sf-pitch', this)">Copy to clipboard</button>
+    </div>
+
+    <div class="card accent">
+      <div class="card-label">Email Template — Profile A</div>
+      <h2>SFMC / Marketing Ops</h2>
+      <div class="email-box">
+        <div class="email-header">
+          <div class="email-field"><strong>Subject:</strong> Getting full value out of your Salesforce investment</div>
+        </div>
+        <div class="email-body">Hi <span class="placeholder">[Name]</span>,
+
+Most companies we talk to have Salesforce Marketing Cloud in place but are using less than 30% of its actual capability. The platform is there, the license is paid, but <span class="highlight">the journeys are not running, the segmentation is basic, and the team is still operating campaigns manually.</span>
+
+We helped a leading financial services company with over 10 million active customers build an always-on lifecycle engine on SFMC that doubled engagement and tripled content output without adding headcount.
+
+Would it make sense to show you what that could look like for <span class="placeholder">[Company]</span>?
+
+Best,
+<span class="placeholder">[Your name]</span></div>
+      </div>
+    </div>
+
+    <div class="card accent">
+      <div class="card-label">Email Template — Profile B</div>
+      <h2>Sales Ops / RevOps</h2>
+      <div class="email-box">
+        <div class="email-header">
+          <div class="email-field"><strong>Subject:</strong> Your sales team is sitting on insights they cannot see</div>
+        </div>
+        <div class="email-body">Hi <span class="placeholder">[Name]</span>,
+
+Most sales organizations we work with have thousands of customer interactions logged in Salesforce but no systematic way to turn that data into decisions. <span class="highlight">The information is there. The visibility is not.</span>
+
+We built an Einstein AI solution for a $50B supply chain company in the US that analyzed over 8,000 sales interactions and surfaced real-time coaching, missed opportunities, and strategic priorities directly inside Salesforce.
+
+I would love to share how we approached it. Would 20 minutes this week work?
+
+Best,
+<span class="placeholder">[Your name]</span></div>
+      </div>
+    </div>
+
+    <div class="card full">
+      <div class="card-label">Cases</div>
+      <h2>Salesforce proof points</h2>
+      <div class="cases">
+        <div class="case-item">
+          <div class="case-badge">🌽</div>
+          <div class="case-content">
+            <h4>Mosaic</h4>
+            <p>Unified Salesforce and SAP across North and South America, standardizing contract management and giving sales teams full pipeline visibility.</p>
+            <div class="case-metric">Up to $1M in technology and licensing cost savings over 3 years</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQBbaFVKZrGcQLcUeRiefr1RAXyReJUPHC5SsJluQs26ULA?e=gbBYda" target="_blank">View full case</a>
+          </div>
+        </div>
+        <div class="case-item">
+          <div class="case-badge">🚗</div>
+          <div class="case-content">
+            <h4>Movida</h4>
+            <p>End-to-end lifecycle orchestration on Salesforce Marketing Cloud with AI-driven offer logic and behavioral targeting.</p>
+            <div class="case-metric">+68% conversion rate · -42% cost per conversion</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQDy3tNj4hyQTbNx8GxD-j3HAbVOFpHIAzD9U91mgdQODpk?e=Yhpa1k" target="_blank">View full case</a>
+          </div>
+        </div>
+        <div class="case-item">
+          <div class="case-badge">🤖</div>
+          <div class="case-content">
+            <h4>US Supply Chain Company ($50B)</h4>
+            <p>Einstein AI analyzing 8,000+ sales interactions, generating real-time performance insights directly inside Salesforce for sales leadership.</p>
+            <div class="case-metric">Real-time seller visibility · Missed opportunities detected at scale</div>
+            <a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQClpWwIVxT7TbDGR86kSpbMAVBDx2Pxyxf0tGN6ZDLuMp8?e=Z9KWGw" target="_blank">View full case</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE MAP -->
+  <div class="profile" id="profile-map">
+    <div class="card full">
+      <div class="card-label">Quick Reference</div>
+      <h2>Case study map by profile</h2>
+      <table class="map-table">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Sector</th>
+            <th>Best profiles</th>
+            <th>Key result</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Boticário</td>
+            <td>Retail Beauty</td>
+            <td><span class="tag">CMO</span><span class="tag">Digital</span></td>
+            <td>40% digital share of in-store purchase journey</td>
+            <td><a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQDbi8Lgm6M7QZAeKVLX9uFTAaljs87eI7BJM4mYaH1oJZo?e=ulldkQ" target="_blank">Open</a></td>
+          </tr>
+          <tr>
+            <td>Suvinil / Sherwin Williams</td>
+            <td>Paint / Retail</td>
+            <td><span class="tag">CMO</span><span class="tag">CRM</span></td>
+            <td>5.1x ROI · CRM drove 17% of period revenue</td>
+            <td><a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQCMZjHkEQeeRLEMIJ5v0W6EAREh6mtJKzMJP208vg6rhK4?e=rvQ54K" target="_blank">Open</a></td>
+          </tr>
+          <tr>
+            <td>Getnet / Santander</td>
+            <td>Fintech</td>
+            <td><span class="tag">CRM</span><span class="tag">MarTech</span></td>
+            <td>3x content efficiency · 2x engagement</td>
+            <td><a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQBApH1r52rASaS6djcf03KyAQpROzQi60gStzViHbpV0Sw?e=anRE1Z" target="_blank">Open</a></td>
+          </tr>
+          <tr>
+            <td>Movida</td>
+            <td>Car Rental</td>
+            <td><span class="tag">CRM</span><span class="tag">Digital</span><span class="tag">Salesforce</span></td>
+            <td>+68% conversion · -42% cost per conversion</td>
+            <td><a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQDy3tNj4hyQTbNx8GxD-j3HAbVOFpHIAzD9U91mgdQODpk?e=Yhpa1k" target="_blank">Open</a></td>
+          </tr>
+          <tr>
+            <td>Vivo / Telefonica</td>
+            <td>Telecom</td>
+            <td><span class="tag">MarTech</span><span class="tag">CDO</span></td>
+            <td>+75% efficiency · -90% issue resolution time</td>
+            <td><a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQCjtYtCTkNTQrF-hD1AfKPLAe2Ve-VMNJjXIgXdj9aeTq0?e=MQtfhm" target="_blank">Open</a></td>
+          </tr>
+          <tr>
+            <td>Wizard / Pearson</td>
+            <td>Education</td>
+            <td><span class="tag">Digital</span><span class="tag">MarTech</span></td>
+            <td>+41% overall conversion rate</td>
+            <td><a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQC0txsgdiF_RJZn6hIt0LgSAYBsVUbVHYNOOuSuHC4edv4?e=vxxQZI" target="_blank">Open</a></td>
+          </tr>
+          <tr>
+            <td>Mosaic</td>
+            <td>Industrial B2B</td>
+            <td><span class="tag">CDO</span><span class="tag">Salesforce</span></td>
+            <td>Up to $1M cost savings over 3 years</td>
+            <td><a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQBbaFVKZrGcQLcUeRiefr1RAXyReJUPHC5SsJluQs26ULA?e=gbBYda" target="_blank">Open</a></td>
+          </tr>
+          <tr>
+            <td>US Supply Chain ($50B)</td>
+            <td>B2B / Supply Chain</td>
+            <td><span class="tag">CDO</span><span class="tag">Salesforce</span></td>
+            <td>8,000+ interactions turned into real-time AI insights</td>
+            <td><a class="case-link" href="https://stefaninilatam.sharepoint.com/:p:/s/GAUGEUS/IQClpWwIVxT7TbDGR86kSpbMAVBDx2Pxyxf0tGN6ZDLuMp8?e=Z9KWGw" target="_blank">Open</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Stefanini Marketing · Cold Outreach Guide · June 2026 · For internal use only
+</div>
+
+<script>
+  function showProfile(id, btn) {
+    document.querySelectorAll('.profile').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('profile-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function copyText(id, btn) {
+    const el = document.getElementById(id);
+    const text = el.innerText.replace(/^"|"$/g, '');
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy to clipboard', 2000);
+    });
+  }
+</script>
+</body>
+</html>
